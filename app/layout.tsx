@@ -1,5 +1,4 @@
 import "@/styles/globals.css";
-import { Link } from "@nextui-org/link";
 import clsx from "clsx";
 import { Metadata, Viewport } from "next";
 
@@ -41,8 +40,8 @@ export default function RootLayout({
         )}
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
-          <div className="relative flex flex-col h-screen">
-            <main className="container mx-auto max-w-full px-20 flex-grow">
+          <div className="relative flex h-screen flex-col">
+            <main className="container mx-auto max-w-full grow px-20">
               {children}
             </main>
             {/* <footer className="w-full flex items-center justify-center py-3">
