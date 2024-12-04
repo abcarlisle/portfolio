@@ -35,7 +35,7 @@ export const title = tv({
         "pink",
         "foreground",
       ],
-      class: "bg-gradient-to-b bg-clip-text text-transparent",
+      class: "text-transparent bg-gradient-to-b bg-clip-text",
     },
   ],
 });
@@ -49,5 +49,17 @@ export const subtitle = tv({
   },
   defaultVariants: {
     fullWidth: true,
+  },
+});
+
+export const lessImportantText = tv({
+  base: "text-large text-midnight-50 text-opacity-85",
+  variants: {
+    hovered: {
+      true: "hover:text-xl hover:text-default-900 hover:text-opacity-100",
+    },
+  },
+  defaultVariants: {
+    hovered: false,
   },
 });
