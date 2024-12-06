@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { Post } from "@/lib/api";
-import { getMardownContent } from "@/lib/MarkdownRenderer";
+import { getMardownContent } from "@/app/lib/MarkdownRenderer";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 

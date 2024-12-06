@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import Tag from "@/components/Tag";
 import { Post } from "@/lib/api";
 
 export interface LayoutProps {
@@ -45,6 +46,11 @@ export default function SummaryLayout({ posts, ref }: LayoutProps) {
                             {title}
                           </Link>
                         </h2>
+                        <div className="flex flex-wrap">
+                          {post.skills.map((skill: string) => (
+                            <Tag key={skill} text={skill} />
+                          ))}
+                        </div>
                       </div>
                       <div className="dark:text-gray-400 prose max-w-none text-midnight-50 text-opacity-80">
                         {summary}

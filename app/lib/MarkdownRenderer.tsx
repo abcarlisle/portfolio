@@ -6,9 +6,13 @@ import remarkGfm from "remark-gfm";
 interface Post {
   slug: string;
 }
+
+export async function getMardownContent(slug: string) {
+  return await fetch(`/posts/${slug}.md`).then((res) => res.text());
+}
+
 export default async function MDXRenderer({ slug }: Post) {
-  const response = await fetch(`/posts/${slug}.md`);
-  const markdown = await response.text();
+  const markdown = await getMardownContent(slug);
 
   return (
     <div className="prose dark:prose-invert">

@@ -1,55 +1,76 @@
 {
   "about": {
-    "slug": "about",
-    "title": "About Me",
     "date": "2020-01-01",
-    "summary": "Summary of things about pre-rendering"
+    "slug": "about",
+    "summary": "",
+    "title": "About Me",
+    "skills": []
   },
-  "work": [
-        {
-      "slug": "ng3",
-      "title": "Assistant Technical Lead Northrop Grumman",
+  "projects": [
+    {
       "date": "2020-01-01",
-      "summary": "Summary of things about pre-rendering"
+      "slug": "ETF_Holding_Calculator",
+      "summary": "Built a tool using Next.js and Python that calculates exposure across industries, sectors, and countries for ETF portfolios. Hosted it as a static website in AWS S3 for low costs and added a contact form using AWS Lambda, API Gateway, and SES to handle communication.",
+      "title": "ETF Calculator",
+      "skills": [ "Next.js", "Python", "AWS S3", "AWS Lambda", "AWS API Gateway", "AWS SES" ]
     },
-
-        {
-      "slug": "ng1",
-      "title": "Software Engineer Northrop Grumman",
+    {
       "date": "2020-01-01",
-      "summary": "Summary of things about pre-rendering"
+      "slug": "Surf_Photography_App",
+      "summary": "Created a React Native app for managing surf photography, with cloud storage for images using AWS S3 and data management through DynamoDB. Automated the infrastructure setup with AWS CDK for faster deployment.",
+      "title": "Surf Photography Application",
+      "skills": [ "React Native", "TypeScript", "AWS S3", "AWS DynamoDB", "AWS CDK"]
     },
-
-        {
-      "slug": "ng2",
-      "title": "Associate Software Engineer Northrop Grumman",
+    {
       "date": "2020-01-01",
-      "summary": "Summary of things about pre-rendering"
+      "slug": "Injection_Molder_Control_System",
+      "summary": "Wrote embedded software to control an injection molder system, focusing on PID temperature regulation for stability. Added RF communication for wireless coordination and interfacing with hardware. This made the system more automated and reliable.",
+      "title": "Surf Photography Application",
+      "skills": [ "C++", "PID Control Systems", "RF Communication", "I2C and SPI Protocols" ]
+    },
+    {
+      "date": "2020-01-01",
+      "slug": "Lunar_Regolith_Transport_System",
+      "summary": "Developed control software for an autonomous lunar transport system. Focused on pathfinding algorithms and coordinating hardware components to handle harsh lunar conditions. This project emphasized precision and system optimization.",
+      "title": "Surf Photography Application",
+      "skills": [ "C++", "Pathfinding Algorithms", "Embedded Systems Development", "Systems Integration" ]
+    },
+    {
+      "date": "2020-01-01",
+      "slug": "Portfolio",
+      "summary": "Designed and hosted a portfolio website with Next.js and AWS S3. The site showcases my projects and skills, making it easy for others to learn about my work. Its a great way to connect with collaborators and employers.",
+      "title": "This Website",
+      "skills": [ "Next.js", "AWS S3", "Web Development" ]
     }
   ],
-  "projects": [
-
-        {
-      "slug": "etf-calculator",
-      "title": "ETF Calculator",
+  "work": [
+    {
       "date": "2020-01-01",
-      "summary": "Summary of things about pre-rendering"
+      "slug": "NG_Assistant_Tech_Lead",
+      "summary": "Helped the technical lead manage a team of software engineers, keeping development processes running smoothly. Focused on resolving blockers and making sure workflows stayed efficient. Also oversaw how new features impacted existing systems and kept the team aligned technically.",
+      "title": "Assistant Technical Lead Northrop Grumman",
+      "skills": ["Leadership", "Collaboration", "Technical Guidance", "C++", "Software Design"]
     },
-
-        {
-      "slug": "surf",
-      "title": "Surf Photography Application",
+    {
       "date": "2020-01-01",
-      "summary": "Summary of things about pre-rendering"
+      "slug": "NG_Software_Engineer",
+      "summary": "Worked on all stages of the software lifecycle, from gathering requirements to deployment. Designed UML diagrams and wrote memory-efficient C++ and ADA code. Focused on using multithreading and synchronization to make systems scalable and reliable.",
+      "title": "Software Engineer Northrop Grumman",
+      "skills": [ "C++", "ADA", "Multithreading", "Software Optimization", "UML Design" ]
     },
-        {
-      "slug": "this",
-      "title": "This Website",
+    {
       "date": "2020-01-01",
-      "summary": "Summary of things about pre-rendering"
+      "slug": "NG_Associate_Software_Engineer",
+      "summary": "As an Associate Software Engineer, I worked on developing high-performance software in C++ and ADA, focusing on scalability and maintainability. I transitioned a Python prototype to production-ready C++ ahead of schedule, demonstrating my ability to optimize workflows. My role also included integrating features using Pub/Sub architecture, which simplified managing distributed systems, and optimizing algorithms to handle a 25% increase in computational load. I collaborated with engineers and subject matter experts across disciplines to ensure the software met complex system requirements.",
+      "title": "Associate Software Engineer Northrop Grumman",
+      "skills": [ "C++", "ADA", "Python", "Distributed Systems (Pub/Sub Architecture)", "Algorithm Optimization", "Cross-Disciplinary Collaboration" ]
+    },
+    {
+      "date": "2020-01-01",
+      "slug": "NG_Software_Engineer_Intern",
+      "summary": "Built a monitoring app in C++ and Python that made deployments more reliable by catching build issues early. Worked with XML schemas to make configurations reusable and scalable. These improvements saved developer time and reduced errors during deployment.",
+      "title": "Associate Software Engineer Northrop Grumman",
+      "skills": [ "C++", "Python", "XML Schemas", "Qt GUI Development", "Debugging" ]
     }
   ]
 }
-
-
-  

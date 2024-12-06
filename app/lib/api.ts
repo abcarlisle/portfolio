@@ -5,6 +5,7 @@ export interface Post {
   title: string;
   date: Date;
   summary: string;
+  skills: string[];
 }
 export function getAllPosts(): { projects: Post[]; work: Post[]; about: Post } {
   const projects = postsData["projects"];
