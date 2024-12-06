@@ -58,8 +58,10 @@ export const lessImportantText = tv({
     hovered: {
       true: "hover:text-xl hover:text-default-900 hover:text-opacity-100",
     },
+    selected: { true: "text-xl text-default-900 text-opacity-100" },
   },
   defaultVariants: {
     hovered: false,
+    selected: false,
   },
 });

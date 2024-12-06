@@ -6,16 +6,34 @@ export interface Post {
   date: Date;
   summary: string;
 }
-export function getAllPosts(): Post[] {
-  const formattedPosts = postsData.map((post) => {
+export function getAllPosts(): { projects: Post[]; work: Post[]; about: Post } {
+  const projects = postsData["projects"];
+  const work = postsData["work"];
+  const about = postsData["about"];
+
+  const formatedProjects = projects.map((post) => {
     return { ...post, date: new Date(post.date) };
   });
 
-  return formattedPosts;
+  const formatedWork = work.map((post) => {
+    return { ...post, date: new Date(post.date) };
+  });
+
+  const formatedAbout = { ...about, date: new Date(about.date) };
+
+  return {
+    projects: formatedProjects,
+    work: formatedWork,
+    about: formatedAbout,
+  };
 }
 
 export async function getPostBySlug(slug: string): Promise<Post> {
-  const post = postsData.find((p) => p.slug === slug);
+  let post = postsData["projects"].find((p) => p.slug === slug);
+
+  if (!post) {
+    post = postsData["work"].find((p) => p.slug === slug);
+  }
 
   if (post) {
     return { ...post, date: new Date(post.date) };

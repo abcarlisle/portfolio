@@ -1,37 +1,66 @@
 "use client";
 import clsx from "clsx";
-import Link from "next/link";
+import { RefObject, useRef, useState } from "react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 import { getAllPosts } from "./lib/api";
 
 import { lessImportantText, subtitle, title } from "@/components/primitives";
 import { Socials } from "@/components/socials";
+import SummaryLayout from "@/layout/SummaryLayout";
+import AboutLayout from "@/layout/AboutLayout";
 //https://cal.com/andrew-carlisle-wsvppu
+
 export default function Home() {
   const posts = getAllPosts();
 
+  const refs: RefObject<HTMLDivElement>[] = [
+    useRef<HTMLDivElement>(null),
+    useRef<HTMLDivElement>(null),
+    useRef<HTMLDivElement>(null),
+  ];
+  const [visibleSection, setVisibleSection] = useState(0);
+
+  const PADDING_TOP = 96;
+  const WINDOW_BOTTOM = window.innerHeight - PADDING_TOP;
+  const WINDOW_TOP = PADDING_TOP;
+
+  const handleScroll = () => {
+    for (let i = 0; i < refs.length; i++) {
+      if (refs[i].current) {
+        const rect = refs[i].current?.getBoundingClientRect();
+
+        if (rect) {
+          if (rect.top >= WINDOW_TOP && rect.top < WINDOW_BOTTOM) {
+            setVisibleSection(i);
+            break;
+          } else if (rect.top < WINDOW_TOP && rect.bottom > WINDOW_BOTTOM) {
+            setVisibleSection(i);
+            break;
+          }
+        }
+      }
+    }
+  };
+
   return (
-    <div className="flex h-screen flex-col md:flex-row">
-      <section className="flex h-full max-h-screen grow flex-col  overflow-y-auto  py-20 text-start">
-        <div className="h-2/6 w-full grow bg-midnight-500">
+    <div className="flex h-screen flex-col py-24 md:flex-row">
+      <section className="flex h-full max-h-screen grow flex-col  overflow-y-auto  px-20 text-start">
+        <div className="h-2/6 w-full grow ">
           <span className={title()}>Andrew Carlisle&nbsp;</span>
           <span className={subtitle()}>Software Engineer</span>
         </div>
         <div className="hidden h-1/2 md:flex">
-          <ul className="space-y-2 bg-midnight-500 md:flex-col">
+          <ul className="space-y-2 md:flex-col">
             {/* <ul className="list-inside list-disc"> */}
             <li
               className={clsx(
                 "list-item",
-                lessImportantText({ hovered: true }),
-              )}
-            >
-              Work Experience
-            </li>
-            <li
-              className={clsx(
-                "list-item",
-                lessImportantText({ hovered: true }),
+                lessImportantText({
+                  hovered: true,
+                  selected: visibleSection === 0,
+                }),
               )}
             >
               About
@@ -39,19 +68,24 @@ export default function Home() {
             <li
               className={clsx(
                 "list-item",
-                lessImportantText({ hovered: true }),
+                lessImportantText({
+                  hovered: true,
+                  selected: visibleSection === 1,
+                }),
               )}
             >
-              Projects
+              Work Experience
             </li>
-
             <li
               className={clsx(
                 "list-item",
-                lessImportantText({ hovered: true }),
+                lessImportantText({
+                  hovered: true,
+                  selected: visibleSection === 2,
+                }),
               )}
             >
-              Contact
+              Projects
             </li>
           </ul>
         </div>
@@ -61,63 +95,24 @@ export default function Home() {
         <div />
       </section>
 
-      <section className="flex max-h-screen w-2/3 flex-col items-start justify-start gap-4 overflow-y-auto py-8 md:py-10">
-        <ul className="divide-gray-200 dark:divide-gray-700 divide-y">
-          {!posts.length && "No posts found."}
-          {posts.map((post) => {
-            const { slug, date, title, summary } = post;
-
-            return (
-              <li key={slug} className="py-12">
-                <article>
-                  <div className="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
-                    <dl>
-                      <dt className="sr-only">Published on</dt>
-                      <dd className="text-gray-500 dark:text-gray-400 text-base font-medium leading-6">
-                        <time
-                          dateTime={date.toLocaleDateString("en-US", {
-                            year: "numeric",
-                            month: "long",
-                            day: "numeric",
-                          })}
-                        >
-                          {post.date.toLocaleDateString("en-US", {
-                            year: "numeric",
-                            month: "long",
-                            day: "numeric",
-                          })}
-                        </time>
-                      </dd>
-                    </dl>
-                    <div className="space-y-5 xl:col-span-3">
-                      <div className="space-y-6">
-                        <div>
-                          <h2 className="text-2xl font-bold leading-8 tracking-tight">
-                            <Link className="" href={`/blog/${slug}`}>
-                              {title}
-                            </Link>
-                          </h2>
-                        </div>
-                        <div className="dark:text-gray-400 prose max-w-none text-midnight-50 text-opacity-80">
-                          {summary}
-                        </div>
-                      </div>
-                      <div className="text-base font-medium leading-6">
-                        <Link
-                          aria-label={`Read more: "${title}"`}
-                          className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-                          href={`/blog/${slug}`}
-                        >
-                          Read more &rarr;
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                </article>
-              </li>
-            );
-          })}
-        </ul>
+      <section
+        className="flex max-h-screen w-2/3 flex-col items-start justify-start gap-14 overflow-y-auto"
+        onScroll={() => handleScroll()}
+      >
+        <div ref={refs[0]} className="w-full flex-col">
+          <div className="h-screen">
+            <AboutLayout about={posts.about} />
+          </div>
+        </div>
+        <div ref={refs[1]} className="w-full">
+          <SummaryLayout posts={posts.work} />
+        </div>
+        <div ref={refs[2]} className="w-full">
+          <SummaryLayout posts={posts.work} />
+          <SummaryLayout posts={posts.work} />
+          <SummaryLayout posts={posts.projects} />
+          <SummaryLayout posts={posts.projects} />
+        </div>
       </section>
     </div>
   );

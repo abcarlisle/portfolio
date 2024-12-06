@@ -1,10 +1,55 @@
-    [
+{
+  "about": {
+    "slug": "about",
+    "title": "About Me",
+    "date": "2020-01-01",
+    "summary": "Summary of things about pre-rendering"
+  },
+  "work": [
         {
-      "slug": "pre-render",
-      "title": "Pre-rendering",
+      "slug": "ng3",
+      "title": "Assistant Technical Lead Northrop Grumman",
+      "date": "2020-01-01",
+      "summary": "Summary of things about pre-rendering"
+    },
+
+        {
+      "slug": "ng1",
+      "title": "Software Engineer Northrop Grumman",
+      "date": "2020-01-01",
+      "summary": "Summary of things about pre-rendering"
+    },
+
+        {
+      "slug": "ng2",
+      "title": "Associate Software Engineer Northrop Grumman",
       "date": "2020-01-01",
       "summary": "Summary of things about pre-rendering"
     }
+  ],
+  "projects": [
 
-      ]
+        {
+      "slug": "etf-calculator",
+      "title": "ETF Calculator",
+      "date": "2020-01-01",
+      "summary": "Summary of things about pre-rendering"
+    },
+
+        {
+      "slug": "surf",
+      "title": "Surf Photography Application",
+      "date": "2020-01-01",
+      "summary": "Summary of things about pre-rendering"
+    },
+        {
+      "slug": "this",
+      "title": "This Website",
+      "date": "2020-01-01",
+      "summary": "Summary of things about pre-rendering"
+    }
+  ]
+}
+
+
   
