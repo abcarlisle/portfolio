@@ -1,6 +1,6 @@
 import "@/styles/globals.css";
 import clsx from "clsx";
-import { Metadata, Viewport } from "next";
+import { Metadata } from "next";
 
 import { Providers } from "./providers";
 
@@ -18,12 +18,12 @@ export const metadata: Metadata = {
   },
 };
 
-export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "white" },
-    { media: "(prefers-color-scheme: dark)", color: "black" },
-  ],
-};
+//export const viewport: Viewport = {
+//  themeColor: [
+//    { media: "(prefers-color-scheme: light)", color: "white" },
+//    { media: "(prefers-color-scheme: dark)", color: "black" },
+//  ],
+//};
 
 export default function RootLayout({
   children,
@@ -35,7 +35,8 @@ export default function RootLayout({
       <head />
       <body
         className={clsx(
-          "min-h-screen bg-midnight-950 font-sans antialiased",
+          "min-h-screen bg-midnight-950 bg-gradient-to-l from-midnight-800 via-midnight-900 to-midnight-950 font-sans antialiased",
+
           fontSans.variable,
         )}
       >

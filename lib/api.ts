@@ -1,4 +1,4 @@
-import postsData from "../../public/posts/posts.json";
+import postsData from "../public/post/posts.json";
 
 export interface Post {
   slug: string;

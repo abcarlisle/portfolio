@@ -11,7 +11,7 @@ export interface LayoutProps {
 export default function SummaryLayout({ posts, ref }: LayoutProps) {
   return (
     <div ref={ref} className="w-full bg-midnight-200">
-      <ul className="divide-y">
+      <ul className="space-y-2">
         {!posts.length && "No posts found."}
         {posts.map((post) => {
           const { slug, date, title, summary } = post;
@@ -41,26 +41,24 @@ export default function SummaryLayout({ posts, ref }: LayoutProps) {
                   <div className="space-y-5 xl:col-span-3">
                     <div className="space-y-6">
                       <div>
-                        <h2 className="text-2xl font-bold leading-8 tracking-tight">
-                          <Link className="" href={`/blog/${slug}`}>
+                        <Link className="" href={`/post/${slug}`}>
+                          <h2 className="text-large font-extrabold tracking-tight">
                             {title}
-                          </Link>
-                        </h2>
+                          </h2>
+                        </Link>
                         <div className="flex flex-wrap">
                           {post.skills.map((skill: string) => (
                             <Tag key={skill} text={skill} />
                           ))}
                         </div>
                       </div>
-                      <div className="dark:text-gray-400 prose max-w-none text-midnight-50 text-opacity-80">
-                        {summary}
-                      </div>
+                      <div className="prose dark:prose-invert">{summary}</div>
                     </div>
                     <div className="text-base font-medium leading-6">
                       <Link
                         aria-label={`Read more: "${title}"`}
                         className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-                        href={`/blog/${slug}`}
+                        href={`/post/${slug}`}
                       >
                         Read more &rarr;
                       </Link>

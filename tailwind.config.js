@@ -1,4 +1,4 @@
-import {nextui} from '@nextui-org/theme'
+import { nextui } from '@nextui-org/theme'
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -9,18 +9,18 @@ module.exports = {
   ],
   theme: {
     colors: {
-      'midnight': {
-           '50': '#f0f7fe',
-           '100': '#dcecfd',
-           '200': '#c1defc',
-           '300': '#97caf9',
-           '400': '#65adf5',
-           '500': '#428cef',
-           '600': '#2c6fe4',
-           '700': '#2459d1',
-           '800': '#234aaa',
-           '900': '#224186',
-           '950': '#101a34',
+'midnight': {
+        '50': '#f1f8fe',
+        '100': '#e1f0fd',
+        '200': '#bde0fa',
+        '300': '#83c7f6',
+        '400': '#41abef',
+        '500': '#1890df',
+        '600': '#0a69af',
+        '700': '#0a5b9a',
+        '800': '#0d4d7f',
+        '900': '#10416a',
+        '950': '#0b2946'
     },
     },
     extend: {
