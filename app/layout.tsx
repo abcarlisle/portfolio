@@ -35,27 +35,14 @@ export default function RootLayout({
       <head />
       <body
         className={clsx(
-          "min-h-screen bg-midnight-950 bg-gradient-to-l from-midnight-800 via-midnight-900 to-midnight-950 font-sans antialiased",
+          "h-full bg-midnight-900 bg-gradient-to-l font-sans antialiased",
 
           fontSans.variable,
         )}
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
-          <div className="relative flex h-screen flex-col">
-            <main className="container mx-auto max-w-full grow px-20">
-              {children}
-            </main>
-            {/* <footer className="w-full flex items-center justify-center py-3">
-              <Link
-                isExternal
-                className="flex items-center gap-1 text-current"
-                href="https://nextui-docs-v2.vercel.app?utm_source=next-app-template"
-                title="nextui.org homepage"
-              >
-                <span className="text-default-600">Powered by</span>
-                <p className="text-primary">NextUI</p>
-              </Link>
-            </footer> */}
+          <div className="flex flex-col">
+            <main className="mx-auto max-w-full px-20">{children}</main>
           </div>
         </Providers>
       </body>

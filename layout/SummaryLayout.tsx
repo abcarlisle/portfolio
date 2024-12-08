@@ -10,7 +10,7 @@ export interface LayoutProps {
 
 export default function SummaryLayout({ posts, ref }: LayoutProps) {
   return (
-    <div ref={ref} className="w-full bg-midnight-200">
+    <div ref={ref} className="w-full">
       <ul className="space-y-2">
         {!posts.length && "No posts found."}
         {posts.map((post) => {

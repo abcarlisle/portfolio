@@ -18,6 +18,7 @@ export default function Home() {
     useRef<HTMLDivElement>(null),
     useRef<HTMLDivElement>(null),
     useRef<HTMLDivElement>(null),
+    useRef<HTMLDivElement>(null),
   ];
   const [visibleSection, setVisibleSection] = useState(0);
 
@@ -44,80 +45,101 @@ export default function Home() {
     }
   };
 
+  const handleClicked = (index: number) => {
+    refs[index].current?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
-    <div className="mt-10 flex h-screen flex-col px-20 py-24 md:flex-row">
-      <section className="flex h-full max-h-screen grow flex-col  overflow-y-auto">
-        <div className="h-2/6 w-full grow text-center">
-          <span className={title()}>Andrew Carlisle&nbsp;</span>
-          <span className={subtitle()}>Software Engineer</span>
-        </div>
-        <div className="hidden h-1/4 px-5 md:flex">
-          <div className="block w-80 text-start">
-            <ul className="space-y-2 ">
-              {/* <ul className="list-inside list-disc"> */}
-              <li
-                className={clsx(
-                  "list-item",
-                  lessImportantText({
-                    hovered: true,
-                    selected: visibleSection === 0,
-                  }),
-                )}
-              >
-                About
-              </li>
-              <li
-                className={clsx(
-                  "list-item",
-                  lessImportantText({
-                    hovered: true,
-                    selected: visibleSection === 1,
-                  }),
-                )}
-              >
-                Work Experience
-              </li>
-              <li
-                className={clsx(
-                  "list-item",
-                  lessImportantText({
-                    hovered: true,
-                    selected: visibleSection === 2,
-                  }),
-                )}
-              >
-                Projects
-              </li>
-              <li
-                className={clsx(
-                  "list-item",
-                  lessImportantText({
-                    hovered: true,
-                    selected: visibleSection === 2,
-                  }),
-                )}
-              >
-                Certfications
-              </li>
-            </ul>
+    <div className="flex h-screen flex-col overflow-hidden px-20 py-24 md:flex-row">
+      <section className="flex grow flex-col  overflow-y-auto">
+        <div className="h-3/4">
+          <div className="h-1/2 w-full grow text-center">
+            <span className={title()}>Andrew Carlisle&nbsp;</span>
+            <span className={subtitle()}>Software Engineer</span>
+          </div>
+
+
+          <div className="hidden h-1/2 px-5 md:flex">
+            <div className="block w-80 text-start">
+              <ul className="space-y-2 ">
+                {/* <ul className="list-inside list-disc"> */}
+                <li
+                  className={clsx(
+                    "list-item",
+                    lessImportantText({
+                      hovered: true,
+                      selected: visibleSection === 0,
+                    }),
+                  )}
+                >
+                  <button onClick={() => handleClicked(0)}>About</button>
+                </li>
+                <li
+                  className={clsx(
+                    "list-item",
+                    lessImportantText({
+                      hovered: true,
+                      selected: visibleSection === 1,
+                    }),
+                  )}
+                >
+                  <button onClick={() => handleClicked(1)}>
+                    Work Experience
+                  </button>
+                </li>
+                <li
+                  className={clsx(
+                    "list-item",
+                    lessImportantText({
+                      hovered: true,
+                      selected: visibleSection === 2,
+                    }),
+                  )}
+                >
+                  <button onClick={() => handleClicked(2)}>Projects</button>
+                </li>
+                <li
+                  className={clsx(
+                    "list-item",
+                    lessImportantText({
+                      hovered: true,
+                      selected: visibleSection === 3,
+                    }),
+                  )}
+                >
+                  <button onClick={() => handleClicked(3)}>
+                    Certfications
+                  </button>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
-        <div className="flex h-1/3 items-center justify-center">
-          <Socials />
-        </div>
-        <div className="flex w-full flex-row justify-evenly ">
-          <Button color="primary" variant="solid">
-            Contact Me
-          </Button>
-          <Button color="primary" variant="solid">
-            Schedule a Call
-          </Button>
+
+        <div className="h-1/4">
+          <div className=" flex h-1/2 w-full flex-row items-end justify-evenly">
+            <Button color="primary" variant="solid">
+              Contact Me
+            </Button>
+            <Button
+              color="primary"
+              variant="solid"
+              onPress={() =>
+                window.open("https://cal.com/andrew-carlisle-wsvppu/30min")
+              }
+            >
+              Schedule a Call
+            </Button>
+          </div>
+          <div className="flex h-1/2 items-end justify-center ">
+            <Socials />
+          </div>
         </div>
         <div />
       </section>
 
       <section
-        className="flex max-h-screen w-2/3 flex-col items-start justify-start gap-28 overflow-y-auto pl-10"
+        className="flex max-h-screen w-2/3 flex-col items-start justify-start gap-28 overflow-y-auto pl-10 "
         onScroll={() => handleScroll()}
       >
         <div ref={refs[0]} className="w-full flex-col ">
@@ -128,6 +150,9 @@ export default function Home() {
         </div>
         <div ref={refs[2]} className="w-full">
           <SummaryLayout posts={posts.projects} />
+        </div>
+        <div ref={refs[3]} className="w-full">
+          <p>AWS</p>
         </div>
       </section>
     </div>

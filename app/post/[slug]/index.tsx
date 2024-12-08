@@ -23,13 +23,13 @@ export default function PostPage({ params }: Props) {
   return (
     <>
       <PostLayout
-        authorDetails={["Andrew"]}
         date={new Date()}
         githubUrl={""}
         tags={["Skills"]}
         title={"asdf"}
       >
-        <MDXRenderer markdown={params.markdown} />
+        {/* <text /> */}
+        <MDXRenderer markdown={markdown} />
       </PostLayout>
     </>
   );
