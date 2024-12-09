@@ -9,9 +9,6 @@
 		"lint": "eslint . --ext .ts,.tsx -c .eslintrc.json --fix"
 	},
 	"dependencies": {
-		"@mdx-js/loader": "^3.1.0",
-		"@mdx-js/react": "^3.1.0",
-		"@next/mdx": "^15.0.3",
 		"@nextui-org/button": "2.0.38",
 		"@nextui-org/code": "2.0.33",
 		"@nextui-org/input": "2.2.5",
@@ -25,29 +22,24 @@
 		"@nextui-org/theme": "2.2.11",
 		"@react-aria/ssr": "3.9.4",
 		"@react-aria/visually-hidden": "3.8.12",
-		"@tailwindcss/typography": "^0.5.15",
-		"@types/mdx": "^2.0.13",
 		"clsx": "2.1.1",
 		"date-fns": "^4.1.0",
-		"framer-motion": "~11.1.1",
-		"intl-messageformat": "^10.5.0",
-		"mdx-bundler": "^10.0.3",
 		"next": "13.5.7",
 		"next-themes": "^0.2.1",
 		"react": "18.3.1",
 		"react-dom": "18.3.1",
 		"react-markdown": "^9.0.1",
-		"remark-gfm": "^4.0.0",
-		"tailwindcss-gradients": "^3.0.0"
+		"remark-gfm": "^4.0.0"
 	},
 	"devDependencies": {
 		"@next/eslint-plugin-next": "^15.0.3",
+		"@tailwindcss/typography": "^0.5.15",
 		"@types/node": "20.5.7",
 		"@types/react": "18.3.3",
 		"@types/react-dom": "18.3.0",
 		"@typescript-eslint/eslint-plugin": "8.11.0",
 		"@typescript-eslint/parser": "8.11.0",
-		"autoprefixer": "10.4.19",
+		"autoprefixer": "^10.4.20",
 		"eslint": "^8.57.0",
 		"eslint-config-next": "14.2.1",
 		"eslint-config-prettier": "9.1.0",
@@ -59,10 +51,10 @@
 		"eslint-plugin-react-hooks": "^4.6.0",
 		"eslint-plugin-tailwindcss": "^3.17.5",
 		"eslint-plugin-unused-imports": "4.1.4",
-		"postcss": "8.4.38",
+		"postcss": "^8.4.49",
 		"prettier": "3.3.3",
 		"tailwind-variants": "0.1.20",
-		"tailwindcss": "3.4.3",
+		"tailwindcss": "^3.4.16",
 		"typescript": "5.6.3"
 	}
 }

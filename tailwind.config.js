@@ -3,13 +3,16 @@ import { nextui } from '@nextui-org/theme'
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    './components/**/*.{js,ts,jsx,tsx,mdx}',
-    './app/**/*.{js,ts,jsx,tsx,mdx}',
-    './node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}'
+    './components/**/*.{js,ts,jsx,tsx,mdx,md}',
+    './app/**/*.{js,ts,jsx,tsx,mdx,md}',
+    './app/*.{js,ts,jsx,tsx,mdx,md}',
+    './app/post/*.{js,ts,jsx,tsx,mdx,md}',
+    './app/post/**/*.{js,ts,jsx,tsx,mdx,md}',
+    './node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx,mdx,md}',
   ],
   theme: {
     colors: {
-'midnight': {
+      'midnight': {
         '50': '#f1f8fe',
         '100': '#e1f0fd',
         '200': '#bde0fa',

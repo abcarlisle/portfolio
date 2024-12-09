@@ -58,7 +58,6 @@ export default function Home() {
             <span className={subtitle()}>Software Engineer</span>
           </div>
 
-
           <div className="hidden h-1/2 px-5 md:flex">
             <div className="block w-80 text-start">
               <ul className="space-y-2 ">
@@ -142,7 +141,7 @@ export default function Home() {
         className="flex max-h-screen w-2/3 flex-col items-start justify-start gap-28 overflow-y-auto pl-10 "
         onScroll={() => handleScroll()}
       >
-        <div ref={refs[0]} className="w-full flex-col ">
+        <div ref={refs[0]} className="w-full flex-col">
           <AboutLayout about={posts.about} />
         </div>
         <div ref={refs[1]} className="w-full">

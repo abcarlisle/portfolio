@@ -95,7 +95,7 @@ export default function PostLayout({
           </div>
         </div>
         <div className="">
-          <div className="prose dark:prose-invert">{children}</div>
+          <div className="">{children}</div>
         </div>
       </div>
     </article>

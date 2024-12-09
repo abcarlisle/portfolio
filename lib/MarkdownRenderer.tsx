@@ -8,15 +8,15 @@ interface Post {
 }
 
 export async function getMardownContent(slug: string) {
-  return await fetch(`${process.env.NEXT_PUBLIC_URL}/post/${slug}.md`).then(
+  return await fetch(`${process.env.NEXT_PUBLIC_URL}/post/${slug}.mdx`).then(
     (res) => res.text(),
   );
 }
 
 export default function MDXRenderer({ markdown }: Post) {
   return (
-    <div className="prose dark:prose-invert">
-      <ReactMarkdown remarkPlugins={[remarkGfm]}>{markdown}</ReactMarkdown>
-    </div>
+    <ReactMarkdown className={"prose"} remarkPlugins={[remarkGfm]}>
+      {markdown}
+    </ReactMarkdown>
   );
 }
