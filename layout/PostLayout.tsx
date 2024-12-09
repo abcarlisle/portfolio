@@ -1,14 +1,14 @@
+import clsx from "clsx";
 import Link from "next/link";
 import { ReactNode } from "react";
 
 import PageTitle from "@/components/PageTitle";
 import Tag from "@/components/Tag";
+import { lessImportantText } from "@/components/primitives";
 
 const postDateTemplate: Intl.DateTimeFormatOptions = {
-  weekday: "long",
   year: "numeric",
   month: "long",
-  day: "numeric",
 };
 
 interface LayoutProps {
@@ -32,7 +32,12 @@ export default function PostLayout({
 }: LayoutProps) {
   return (
     <article className="mx-auto max-w-3xl px-4 pt-10 sm:px-6 xl:max-w-5xl xl:px-0">
-      <div className="h-20 bg-midnight-50 p-10 text-center">
+      <div className="h-36 text-center">
+        <div className={clsx(lessImportantText())}>
+          <span>{date.toLocaleDateString("en-US", postDateTemplate)}</span>
+          <span className="px-2">&rarr;</span>
+          <span>{date.toLocaleDateString("en-US", postDateTemplate)}</span>
+        </div>
         <PageTitle>{title}</PageTitle>
       </div>
       <div className="flex flex-row">

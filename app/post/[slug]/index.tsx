@@ -4,17 +4,20 @@ import { useEffect, useState } from "react";
 
 import PostLayout from "@/layout/PostLayout";
 import MDXRenderer, { getMardownContent } from "@/lib/MarkdownRenderer";
+import { getPostBySlug, Post } from "@/lib/api";
+import { get } from "http";
 
 export type Props = {
-  //params: Post;
-  params: { slug: string; markdown: string };
+  params: { slug: string };
 };
 export default function PostPage({ params }: Props) {
   const [markdown, setMarkdown] = useState("");
+  const [post, setPost] = useState<Post>({title: "", date: new Date(), summary: "", skills: []});
 
   useEffect(() => {
     const fetchData = async () => {
       setMarkdown(await getMardownContent(params.slug));
+      setPost(await getPostBySlug(params.slug));
     };
 
     fetchData();
@@ -23,10 +26,10 @@ export default function PostPage({ params }: Props) {
   return (
     <>
       <PostLayout
-        date={new Date()}
+        date={post.date}
         githubUrl={""}
-        tags={["Skills"]}
-        title={"asdf"}
+        tags={post.skills}
+        title={post.title}
       >
         {/* <text /> */}
         <MDXRenderer markdown={markdown} />

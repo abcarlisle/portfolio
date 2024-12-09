@@ -1,6 +1,5 @@
 
 # Northrop Grumman - Assistant Technical Lead
-_(Start Date TBD)_
 
 ## Overview
 As Assistant Technical Lead, I contributed to the **planning, coordination, and execution** of complex software engineering projects. My primary responsibilities included ensuring team members understood how their contributions aligned with broader goals, removing technical roadblocks, and facilitating efficient workflows to maintain project timelines.

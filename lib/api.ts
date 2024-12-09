@@ -37,6 +37,8 @@ export async function getPostBySlug(slug: string): Promise<Post> {
   }
 
   if (post) {
+    console.log(post.date);
+
     return { ...post, date: new Date(post.date) };
   } else {
     return Promise.reject(new Error(`Post with slug ${slug} not found`));

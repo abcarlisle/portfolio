@@ -9,7 +9,6 @@ export async function generateStaticParams() {
   const slugs = await Promise.all(
     pages.map(async (post) => ({
       slug: post.slug,
-      // markdown: await getMardownContent(post.slug),
     })),
   );
 
