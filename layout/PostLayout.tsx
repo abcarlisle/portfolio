@@ -5,6 +5,7 @@ import { ReactNode } from "react";
 import PageTitle from "@/components/PageTitle";
 import Tag from "@/components/Tag";
 import { lessImportantText } from "@/components/primitives";
+import { Post } from "@/lib/api";
 
 const postDateTemplate: Intl.DateTimeFormatOptions = {
   year: "numeric",
@@ -16,8 +17,8 @@ interface LayoutProps {
   title: string;
   githubUrl: string;
   tags: string[];
-  next?: { path: string; title: string };
-  prev?: { path: string; title: string };
+  next?: Post;
+  prev?: Post;
   children: ReactNode;
 }
 
@@ -60,23 +61,23 @@ export default function PostLayout({
               )}
               {(next || prev) && (
                 <div className="block justify-between space-y-8 py-4 ">
-                  {prev && prev.path && (
+                  {prev && (
                     <div>
                       <h2 className="text-xs uppercase tracking-wide">
                         Previous Article
                       </h2>
                       <div className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
-                        <Link href={`/${prev.path}`}>{prev.title}</Link>
+                        <Link href={`/post/${prev.slug}}`}>{prev.title}</Link>
                       </div>
                     </div>
                   )}
-                  {next && next.path && (
+                  {next && (
                     <div>
                       <h2 className="text-xs uppercase tracking-wide">
                         Next Article
                       </h2>
                       <div className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
-                        <Link href={`/${next.path}`}>{next.title}</Link>
+                        <Link href={`/post/${next.slug}`}>{next.title}</Link>
                       </div>
                     </div>
                   )}
@@ -87,7 +88,7 @@ export default function PostLayout({
               <Link
                 aria-label="Back to Portfolio"
                 className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-                href={`https://www.google.com`}
+                href={`/`}
               >
                 &larr; Back to Portfolio
               </Link>

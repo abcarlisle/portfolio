@@ -44,3 +44,30 @@ export async function getPostBySlug(slug: string): Promise<Post> {
     return Promise.reject(new Error(`Post with slug ${slug} not found`));
   }
 }
+
+async function getPostOffsetSub(
+  data: (typeof postsData)["projects"] | (typeof postsData)["work"],
+  slug: string,
+  offset: number,
+): Promise<Post> {
+  let index = data.findIndex((p) => p.slug === slug);
+
+  if (index !== -1) {
+    const post = data[index + offset];
+
+    return { ...post, date: new Date(post.date) };
+  } else {
+    return Promise.reject(new Error(`Post with slug ${slug} not found`));
+  }
+}
+
+export async function getPostOffset(
+  slug: string,
+  offset: number,
+): Promise<Post> {
+  return getPostOffsetSub(postsData["projects"], slug, offset)
+    .then((post) => post)
+    .catch(() =>
+      getPostOffsetSub(postsData["work"], slug, offset).then((post) => post),
+    );
+}
