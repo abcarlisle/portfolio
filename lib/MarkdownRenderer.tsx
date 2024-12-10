@@ -15,7 +15,7 @@ export async function getMardownContent(slug: string) {
 
 export default function MDXRenderer({ markdown }: Post) {
   return (
-    <ReactMarkdown className={"prose"} remarkPlugins={[remarkGfm]}>
+    <ReactMarkdown className={"prose prose-invert"} remarkPlugins={[remarkGfm]}>
       {markdown}
     </ReactMarkdown>
   );

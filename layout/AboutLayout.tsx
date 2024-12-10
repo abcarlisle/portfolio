@@ -24,7 +24,7 @@ export default function AboutLayout({ about }: LayoutProps) {
   return (
     <div className="w-full">
       <article>
-        <div className="prose max-w-none dark:prose-invert">
+        <div className="prose prose-invert max-w-none">
           <ReactMarkdown remarkPlugins={[remarkGfm]}>{markdown}</ReactMarkdown>
         </div>
       </article>

@@ -150,7 +150,8 @@ export default function Home() {
         <div ref={refs[2]} className="w-full">
           <SummaryLayout posts={posts.projects} />
         </div>
-        <div ref={refs[3]} className="w-full">
+        {/* Bug with static pages and prose need to have prose declared in the non static page on something that wouldn't matter  */}
+        <div ref={refs[3]} className="prose prose-invert w-full">
           <p>AWS</p>
         </div>
       </section>

@@ -18,7 +18,7 @@ export default function SummaryLayout({ posts, ref }: LayoutProps) {
 
           return (
             <li key={slug} className="py-12">
-              <article>
+              <article className="not-prose">
                 <div className="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
                   <dl>
                     <dt className="sr-only">Published on</dt>
@@ -52,7 +52,7 @@ export default function SummaryLayout({ posts, ref }: LayoutProps) {
                           ))}
                         </div>
                       </div>
-                      <div className="prose dark:prose-invert">{summary}</div>
+                      <div className="prose prose-invert">{summary}</div>
                     </div>
                     <div className="text-base font-medium leading-6">
                       <Link
