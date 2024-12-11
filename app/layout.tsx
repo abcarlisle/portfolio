@@ -1,6 +1,6 @@
-import "../styles/globals.css";
 import clsx from "clsx";
 import { Metadata } from "next";
+import "../styles/globals.css";
 
 import { Providers } from "./providers";
 
@@ -35,7 +35,7 @@ export default function RootLayout({
       <head />
       <body
         className={clsx(
-          "h-full bg-midnight-900 bg-gradient-to-l font-sans antialiased",
+          "h-full overscroll-contain bg-midnight-950 bg-gradient-to-tr font-sans antialiased",
 
           fontSans.variable,
         )}
