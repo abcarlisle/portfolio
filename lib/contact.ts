@@ -1,4 +1,5 @@
 import { ContactFormValues } from "../hooks/contact/useForm";
+import key from "../.key.json";
 
 export async function ContactUsRequest({
   firstName,
@@ -12,7 +13,7 @@ export async function ContactUsRequest({
     {
       method: "POST",
       headers: {
-        "x-api-key": "aKe4sC1Gyw8BkqdlA24GM1AmLUs9AKMj3a3Prl7G",
+        "x-api-key": key.contactKey,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
