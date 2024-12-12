@@ -6,6 +6,7 @@ export interface Post {
   date: Date;
   summary: string;
   skills: string[];
+  github?: string;
 }
 export function getAllPosts(): { projects: Post[]; work: Post[]; about: Post } {
   const projects = postsData["projects"];
@@ -45,29 +46,23 @@ export async function getPostBySlug(slug: string): Promise<Post> {
   }
 }
 
-async function getPostOffsetSub(
-  data: (typeof postsData)["projects"] | (typeof postsData)["work"],
+
+export async function getPostOffset(
   slug: string,
   offset: number,
 ): Promise<Post> {
+  const data = postsData["work"].concat(postsData["projects"]);
+
   let index = data.findIndex((p) => p.slug === slug);
 
   if (index !== -1) {
+    if (index + offset < 0 || index + offset >= data.length) {
+      return Promise.reject(new Error(`Post with slug ${slug} not found`));
+    }
     const post = data[index + offset];
 
     return { ...post, date: new Date(post.date) };
   } else {
     return Promise.reject(new Error(`Post with slug ${slug} not found`));
   }
-}
-
-export async function getPostOffset(
-  slug: string,
-  offset: number,
-): Promise<Post> {
-  return getPostOffsetSub(postsData["projects"], slug, offset)
-    .then((post) => post)
-    .catch(() =>
-      getPostOffsetSub(postsData["work"], slug, offset).then((post) => post),
-    );
 }

@@ -1,33 +1,13 @@
-/* eslint-disable jsx-a11y/anchor-has-content */
-import type { LinkProps } from "next/link";
-
 import Link from "next/link";
-import { AnchorHTMLAttributes } from "react";
 
-const CustomLink = ({
-  href,
-  ...rest
-}: LinkProps & AnchorHTMLAttributes<HTMLAnchorElement>) => {
-  const isInternalLink = href && href.startsWith("/");
-  const isAnchorLink = href && href.startsWith("#");
-
-  if (isInternalLink) {
-    return <Link className="break-words" href={href} {...rest} />;
-  }
-
-  if (isAnchorLink) {
-    return <a className="break-words" href={href} {...rest} />;
-  }
-
-  return (
-    <a
-      className="break-words"
-      href={href}
-      rel="noopener noreferrer"
-      target="_blank"
-      {...rest}
-    />
-  );
+type Props = {
+  href: string;
+  title: string;
 };
-
-export default CustomLink;
+export default function MyLink({ href, title }: Props) {
+  return (
+    <div className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
+      <Link href={href}>{title}</Link>
+    </div>
+  );
+}

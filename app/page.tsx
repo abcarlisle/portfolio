@@ -1,10 +1,16 @@
 "use client";
-import { Button } from "@nextui-org/button";
+import { Button, useDisclosure } from "@nextui-org/react";
 import clsx from "clsx";
-import { RefObject, useRef, useState } from "react";
+import { RefObject, useEffect, useRef, useState } from "react";
+import { useForm } from "react-hook-form";
 
+import { useContactRequest } from "../hooks/contact/useContactRequestHook";
 import { getAllPosts } from "../lib/api";
 
+import ContactForm, {
+  ContactFormValues,
+} from "@/components/contact/ContactForm";
+import ContactModal from "@/components/contact/ContactModal";
 import { lessImportantText, subtitle, title } from "@/components/primitives";
 import { Socials } from "@/components/socials";
 import AboutLayout from "@/layout/AboutLayout";
@@ -48,6 +54,29 @@ export default function Home() {
   const handleClicked = (index: number) => {
     refs[index].current?.scrollIntoView({ behavior: "smooth" });
   };
+
+  // Contact Form
+
+  const { isLoading, isSuccess, errorMessage, contactRequest } =
+    useContactRequest();
+
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+
+  const { register, reset, formState, handleSubmit } = useForm({
+    defaultValues: { firstName: "", lastName: "", email: "", message: "" },
+    mode: "all",
+  });
+
+  const onSubmit = (values: ContactFormValues) => {
+    contactRequest(values);
+  };
+
+  useEffect(() => {
+    console.log("ERROR: ", errorMessage);
+    if (isSuccess) {
+      reset();
+    }
+  }, [isSuccess, errorMessage]);
 
   return (
     <div className="flex h-screen flex-col overflow-hidden px-20 py-24 md:flex-row">
@@ -117,7 +146,7 @@ export default function Home() {
 
         <div className="h-1/4">
           <div className=" flex h-1/2 w-full flex-row items-end justify-evenly">
-            <Button color="primary" variant="solid">
+            <Button color="primary" variant="solid" onPress={onOpen}>
               Contact Me
             </Button>
             <Button
@@ -138,23 +167,57 @@ export default function Home() {
       </section>
 
       <section
-        className="flex max-h-screen w-2/3 flex-col items-start justify-start gap-28 overflow-y-auto pl-10 "
+        className="flex max-h-screen w-2/3 flex-col items-start justify-start gap-20 overflow-y-auto pl-10 "
         onScroll={() => handleScroll()}
       >
-        <div ref={refs[0]} className="w-full flex-col">
+        <div ref={refs[0]} className="max-h-none">
           <AboutLayout about={posts.about} />
         </div>
-        <div ref={refs[1]} className="w-full">
+        <div ref={refs[1]} className="max-h-none">
           <SummaryLayout posts={posts.work} />
         </div>
-        <div ref={refs[2]} className="w-full">
+        <div ref={refs[2]} className="max-h-none">
           <SummaryLayout posts={posts.projects} />
         </div>
         {/* Bug with static pages and prose need to have prose declared in the non static page on something that wouldn't matter  */}
-        <div ref={refs[3]} className="prose prose-invert w-full">
-          <p>AWS</p>
+        <div
+          ref={refs[3]}
+          className="prose prose-invert flex w-full justify-center"
+        >
+          <div
+            data-iframe-height="270"
+            data-iframe-width="150"
+            data-share-badge-host="https://www.credly.com"
+            data-share-badge-id="c3aca033-795d-4061-8462-a303a90ea349"
+          />
+          <script
+            async
+            src="//cdn.credly.com/assets/utilities/embed.js"
+            type="text/javascript"
+          />
         </div>
       </section>
+
+      {/* Modal for contact */}
+      <ContactModal
+        body={
+          <ContactForm
+            formState={formState}
+            handleRecaptchaChange={function (value: string | null): void {
+              throw new Error("Function not implemented.");
+            }}
+            handleSubmit={handleSubmit}
+            isLoading={isLoading}
+            recaptchaSiteKey={""}
+            recaptchaValue={null}
+            register={register}
+            onSubmit={onSubmit}
+          />
+        }
+        isOpen={isOpen}
+        onOpen={onOpen}
+        onOpenChange={onOpenChange}
+      />
     </div>
   );
 }

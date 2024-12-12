@@ -65,3 +65,12 @@ export const lessImportantText = tv({
     selected: false,
   },
 });
+
+export const text = tv({
+  base: "my-1 block w-full max-w-full text-xs text-default-400",
+  variants: {
+    color: {
+      error: "text-danger-600",
+    },
+  },
+});

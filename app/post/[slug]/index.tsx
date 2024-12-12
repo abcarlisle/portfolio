@@ -4,8 +4,10 @@ import clsx from "clsx";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
+import MyLink from "@/components/Link";
 import PageTitle from "@/components/PageTitle";
 import Tag from "@/components/Tag";
+import { GithubIcon } from "@/components/icons";
 import { lessImportantText } from "@/components/primitives";
 import PostLayout from "@/layout/PostLayout";
 import MDXRenderer, { getMardownContent } from "@/lib/MarkdownRenderer";
@@ -73,10 +75,6 @@ export default function PostPage({ params }: Props) {
       </div>
       <div className="flex w-full flex-row justify-center space-x-9 pr-32">
         <div className="mr-12 w-1/6">
-          <div className="py-6 text-sm">
-            {` • `}
-            <Link href={"/"}>View on GitHub</Link>
-          </div>
           <div className="text-sm font-medium leading-5">
             {post.skills && (
               <div className="py-4 xl:py-8">
@@ -88,6 +86,14 @@ export default function PostPage({ params }: Props) {
                 </div>
               </div>
             )}
+            <div className="flex flex-row items-center space-x-4 py-3 text-sm">
+              {post.github && (
+                <>
+                  <GithubIcon className="text-default-500" />
+                  <MyLink href={post.github} title="View on Github" />
+                </>
+              )}
+            </div>
             {(offsetPosts[1] || offsetPosts[0]) && (
               <div className="block justify-between space-y-8 py-4 ">
                 {offsetPosts[0] && (
@@ -95,11 +101,10 @@ export default function PostPage({ params }: Props) {
                     <h2 className="text-xs uppercase tracking-wide">
                       Previous Article
                     </h2>
-                    <div className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
-                      <Link href={`/post/${offsetPosts[0]?.slug}`}>
-                        {offsetPosts[0].title}
-                      </Link>
-                    </div>
+                    <MyLink
+                      href={`/post/${offsetPosts[0]?.slug}`}
+                      title={offsetPosts[0]?.title}
+                    />
                   </div>
                 )}
                 {offsetPosts[1] && (
@@ -107,11 +112,10 @@ export default function PostPage({ params }: Props) {
                     <h2 className="text-xs uppercase tracking-wide">
                       Next Article
                     </h2>
-                    <div className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
-                      <Link href={`/post/${offsetPosts[1].slug}`}>
-                        {offsetPosts[1].title}
-                      </Link>
-                    </div>
+                    <MyLink
+                      href={`/post/${offsetPosts[1]?.slug}`}
+                      title={offsetPosts[1]?.title}
+                    />
                   </div>
                 )}
               </div>
