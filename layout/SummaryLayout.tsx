@@ -14,14 +14,14 @@ export default function SummaryLayout({ posts, ref }: LayoutProps) {
       <ul className="">
         {!posts.length && "No posts found."}
         {posts.map((post) => {
-          const { slug, date, title, summary } = post;
+          const { slug, title, summary } = post;
 
           return (
             <li key={slug} className="py-2">
               <div className="">
                 <div>
                   <Link className="" href={`/post/${slug}`}>
-                    <h2 className="text-large font-extrabold tracking-tight">
+                    <h2 className="text-xl font-extrabold tracking-tight text-midnight-50">
                       {title}
                     </h2>
                   </Link>

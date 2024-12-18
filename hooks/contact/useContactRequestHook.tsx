@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import { ContactFormValues } from "./useForm";
 
-import { ContactUsRequest } from "@/models/contact";
+import { ContactUsRequest } from "@/lib/contact";
 
 export const useContactRequest = () => {
   const [isSuccess, setIsSuccess] = useState(false);

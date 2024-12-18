@@ -1,5 +1,5 @@
-import { ContactFormValues } from "../hooks/contact/useForm";
 import key from "../.key.json";
+import { ContactFormValues } from "../hooks/contact/useForm";
 
 export async function ContactUsRequest({
   firstName,
@@ -8,22 +8,19 @@ export async function ContactUsRequest({
   message,
 }: ContactFormValues) {
   console.log("Sending request", firstName, lastName, email, message);
-  const request = new Request(
-    "https://uvqoanvj6f.execute-api.us-east-1.amazonaws.com/prod/",
-    {
-      method: "POST",
-      headers: {
-        "x-api-key": key.contactKey,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        firstName: firstName,
-        lastName: lastName,
-        email: email,
-        message: message,
-      }),
+  const request = new Request(key.contactEndpoint, {
+    method: "POST",
+    headers: {
+      "x-api-key": key.contactKey,
+      "Content-Type": "application/json",
     },
-  );
+    body: JSON.stringify({
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      message: message,
+    }),
+  });
 
   console.log(request);
 

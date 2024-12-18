@@ -20,11 +20,9 @@ interface FormComponentProps {
   register: UseFormRegister<ContactFormValues>;
   formState: FormState<ContactFormValues>;
   onSubmit: (values: ContactFormValues) => void;
-  recaptchaSiteKey: string;
   isLoading: boolean;
-  recaptchaValue: string | null;
-  handleRecaptchaChange: (value: string | null) => void;
   handleSubmit: UseFormHandleSubmit<ContactFormValues>;
+  recaptchaRef: React.RefObject<ReCAPTCHA>;
 }
 
 export default function ContactForm({
@@ -32,10 +30,8 @@ export default function ContactForm({
   formState: { errors },
   onSubmit,
   handleSubmit,
-  recaptchaSiteKey,
   isLoading,
-  recaptchaValue,
-  handleRecaptchaChange,
+  recaptchaRef,
 }: FormComponentProps) {
   return (
     <form className="mx-auto max-w-xl" onSubmit={handleSubmit(onSubmit)}>
@@ -110,10 +106,8 @@ export default function ContactForm({
           </div>
         </div>
       </div>
-      <div className="mt-4 flex justify-center">
-        <ReCAPTCHA sitekey={"asdf"} onChange={handleRecaptchaChange} />
-      </div>
-      <div className="mt-6 flex justify-center">
+
+      <div className="mt-6 flex flex-col space-y-5">
         <Button
           color="primary"
           disabled={isLoading} // || !recaptchaValue}
@@ -123,6 +117,12 @@ export default function ContactForm({
         >
           Send
         </Button>
+        <ReCAPTCHA
+          ref={recaptchaRef}
+          className="self-center"
+          sitekey={"6LcT85sqAAAAAP2QFGnBOLoL2HupB2Cdr3nDbkSY"}
+          type="image"
+        />
       </div>
     </form>
   );

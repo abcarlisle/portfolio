@@ -3,25 +3,56 @@ import postsData from "../public/post/posts.json";
 export interface Post {
   slug: string;
   title: string;
-  date: Date;
+  company: string;
+  date_start: Date;
+  date_stop?: Date;
   summary: string;
   skills: string[];
   github?: string;
+}
+
+function formatPost(jsonPost: any): Post {
+  // console.log("PRE", jsonPost);
+  let post: Post;
+
+  if (jsonPost.date_stop) {
+    post = {
+      slug: jsonPost.slug,
+      title: jsonPost.title,
+      company: jsonPost.company,
+      date_start: new Date(jsonPost.date_start),
+      date_stop: new Date(jsonPost.date_stop),
+      summary: jsonPost.summary,
+      skills: jsonPost.skills,
+      github: jsonPost.github,
+    };
+  } else {
+    post = {
+      slug: jsonPost.slug,
+      title: jsonPost.title,
+      company: jsonPost.company,
+      date_start: new Date(jsonPost.date_start),
+      date_stop: undefined,
+      summary: jsonPost.summary,
+      skills: jsonPost.skills,
+      github: jsonPost.github,
+    };
+  }
+
+  // console.log("POST", post);
+
+  return post;
 }
 export function getAllPosts(): { projects: Post[]; work: Post[]; about: Post } {
   const projects = postsData["projects"];
   const work = postsData["work"];
   const about = postsData["about"];
 
-  const formatedProjects = projects.map((post) => {
-    return { ...post, date: new Date(post.date) };
-  });
+  const formatedProjects = projects.map((post) => formatPost(post));
 
-  const formatedWork = work.map((post) => {
-    return { ...post, date: new Date(post.date) };
-  });
+  const formatedWork = work.map((post) => formatPost(post));
 
-  const formatedAbout = { ...about, date: new Date(about.date) };
+  const formatedAbout = formatPost(about);
 
   return {
     projects: formatedProjects,
@@ -38,14 +69,11 @@ export async function getPostBySlug(slug: string): Promise<Post> {
   }
 
   if (post) {
-    console.log(post.date);
-
-    return { ...post, date: new Date(post.date) };
+    return formatPost(post);
   } else {
     return Promise.reject(new Error(`Post with slug ${slug} not found`));
   }
 }
-
 
 export async function getPostOffset(
   slug: string,
@@ -61,7 +89,7 @@ export async function getPostOffset(
     }
     const post = data[index + offset];
 
-    return { ...post, date: new Date(post.date) };
+    return formatPost(post);
   } else {
     return Promise.reject(new Error(`Post with slug ${slug} not found`));
   }

@@ -1,7 +1,9 @@
 "use client";
+
 import { Button, useDisclosure } from "@nextui-org/react";
 import clsx from "clsx";
-import { RefObject, useEffect, useRef, useState } from "react";
+import React, { RefObject, useEffect, useRef, useState } from "react";
+import ReCAPTCHA from "react-google-recaptcha";
 import { useForm } from "react-hook-form";
 
 import { useContactRequest } from "../hooks/contact/useContactRequestHook";
@@ -11,7 +13,7 @@ import ContactForm, {
   ContactFormValues,
 } from "@/components/contact/ContactForm";
 import ContactModal from "@/components/contact/ContactModal";
-import { lessImportantText, subtitle, title } from "@/components/primitives";
+import { lessImportantText, subtitle, title} from "@/components/primitives";
 import { Socials } from "@/components/socials";
 import AboutLayout from "@/layout/AboutLayout";
 import SummaryLayout from "@/layout/SummaryLayout";
@@ -67,8 +69,16 @@ export default function Home() {
     mode: "all",
   });
 
-  const onSubmit = (values: ContactFormValues) => {
-    contactRequest(values);
+  const recaptchaRef = React.useRef<ReCAPTCHA>(null);
+
+  const onSubmit = async (values: ContactFormValues) => {
+    const token = await recaptchaRef.current?.getValue();
+
+    if (token) {
+      contactRequest(values);
+    } else {
+      alert("Please verify you are not a robot.");
+    }
   };
 
   useEffect(() => {
@@ -203,13 +213,9 @@ export default function Home() {
         body={
           <ContactForm
             formState={formState}
-            handleRecaptchaChange={function (value: string | null): void {
-              throw new Error("Function not implemented.");
-            }}
             handleSubmit={handleSubmit}
             isLoading={isLoading}
-            recaptchaSiteKey={""}
-            recaptchaValue={null}
+            recaptchaRef={recaptchaRef}
             register={register}
             onSubmit={onSubmit}
           />

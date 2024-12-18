@@ -1,7 +1,7 @@
 import { tv } from "tailwind-variants";
 
 export const title = tv({
-  base: "inline font-semibold tracking-tight",
+  base: "inline font-semibold tracking-tight text-midnight-50",
   variants: {
     color: {
       violet: "from-[#FF1CF7] to-[#b249f8]",
@@ -41,7 +41,7 @@ export const title = tv({
 });
 
 export const subtitle = tv({
-  base: "my-2 block w-full max-w-full text-lg text-default-600 md:w-1/2 lg:text-xl",
+  base: "my-2 block w-full max-w-full text-lg text-midnight-100 opacity-85 md:w-1/2 lg:text-xl",
   variants: {
     fullWidth: {
       true: "!w-full",
@@ -58,7 +58,7 @@ export const lessImportantText = tv({
     hovered: {
       true: "hover:text-2xl hover:text-default-900 hover:text-opacity-100",
     },
-    selected: { true: "text-2xl text-default-900 text-opacity-100" },
+    selected: { true: "text-2xl text-midnight-50 text-opacity-100" },
   },
   defaultVariants: {
     hovered: false,

@@ -1,5 +1,5 @@
 ## Overview
-The **ETF Holding Calculator** is a web-based application designed to provide users with a clear understanding of their financial exposure across various sectors, industries, and countries based on their ETF holdings. This project combines **Next.js** for the frontend with **Python** for backend processing to deliver accurate analytics in an intuitive and efficient interface.
+The **ETF Holding Calculator** is a web-based application designed to provide users with a clear understanding of their financial exposure across various sectors, industries, and countries based on their ETF holdings. This project combines **Next.js** for the frontend with **Python** for backend data generation and processing to deliver accurate analytics in an intuitive and efficient interface.
 
 Additionally, the application is hosted as a static website on an **AWS S3 bucket**, ensuring cost-efficient and scalable deployment. A **Contact Us** form was also implemented, leveraging **AWS Lambda**, **AWS API Gateway**, and **AWS SES** to route notifications directly to me.
 
@@ -8,7 +8,7 @@ Additionally, the application is hosted as a static website on an **AWS S3 bucke
 ## Features
 - **ETF Exposure Analysis**:
   - Calculate total exposure to sectors, industries, and countries based on ETF holdings.
-  - Accepts data input in structured formats like CSV for processing.
+  - Accepts any number of ETFs and corresponding dollar value in portfolio.
   - Dynamic visualization of portfolio distribution for easier interpretation.
 
 - **Static Website Hosting**:
@@ -26,7 +26,7 @@ Additionally, the application is hosted as a static website on an **AWS S3 bucke
 ## Tools and Technologies
 ### Frontend
 - **Next.js**: Dynamic and optimized web application framework.
-- **CSS/HTML**: Clean and responsive user interface.
+- **TailwindCss**: Clean and responsive user interface.
 
 ### Backend
 - **Python**: Performs data parsing and ETF exposure calculations.
@@ -38,15 +38,19 @@ Additionally, the application is hosted as a static website on an **AWS S3 bucke
 - **AWS API Gateway**: Secures and routes contact form submissions.
 - **AWS SES (Simple Email Service)**: Delivers email notifications from the contact form.
 - **AWS CloudFront**: Enhances performance through CDN services.
+- **AWS Route53**: Handles DNS routing.
 
 ---
 
 ## Development Process
 ### 1. Data Processing and Exposure Calculation
-I began by designing the Python backend to parse user-uploaded ETF holdings files. Using **Pandas**, the backend performs computations to identify the total exposure to each sector, industry, and country based on predefined categorization rules.
+I began by designing the Python backend to create a database of all publicly traded ETFs data that was included was the ETF allocation to specific industries, countries, and actual stocks.
 
 ### 2. Frontend Development
-Using **Next.js**, I built a user-friendly interface for uploading files, viewing results, and interacting with the platform. The interface adapts dynamically to display visualized analytics in a clear and accessible way.
+Using **Next.js**, I built a user-friendly interface for inputing your current ETF portfolio, viewing results, and interacting with the platform. The interface adapts dynamically to display visualized analytics in a clear and accessible way.
+
+### 3. Backend Development
+Using AWS CDK I began developing the infrastructure as code needed to host the application.
 
 ### 3. Static Website Hosting
 To optimize costs, I chose **AWS S3** for static site hosting, allowing the application to run smoothly without maintaining traditional server infrastructure. The site was further accelerated using **AWS CloudFront** for caching and faster global access.
@@ -56,13 +60,14 @@ To enhance user support, I added a contact form connected to **AWS Lambda**, whi
 
 ---
 
-## Screenshots and Visuals
-*Placeholder for Screenshots of the User Interface, Cloud Architecture Diagrams, and Sample Outputs*
+![ETF_Cover](http://localhost:3000/etf_cover.png "ETF Cover")
+![ETF_Calculator](http://localhost:3000/etf_calculator.png "ETF Calculator")
+![ETF_Selection](http://localhost:3000/etf_selection.png "ETF Calculator Selection")
 
 ---
 
 ## Challenges
-- Integrating Python calculations into the Next.js framework required careful API design to ensure efficient communication between frontend and backend.
+- Integrating the ETF database with the Next.js framework required careful API design to ensure efficient communication between frontend and backend due to ETF allocations constantly being updated.
 - Configuring **AWS SES** to comply with email delivery standards and handle routing securely.
 - Designing a scalable and cost-efficient cloud architecture for hosting and serverless functionality.
 

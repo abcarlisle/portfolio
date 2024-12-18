@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import MyLink from "@/components/Link";
-import PageTitle from "@/components/PageTitle";
+import { PageTitle } from "@/components/PageTitle";
 import Tag from "@/components/Tag";
 import { GithubIcon } from "@/components/icons";
 import { lessImportantText } from "@/components/primitives";
@@ -25,8 +25,8 @@ const defaultPosts = [undefined, undefined];
 
 const defaultPost = {
   title: "test",
-
-  date: new Date(),
+  company: "test",
+  date_start: new Date(),
   summary: "test",
   skills: ["test"],
   slug: "test",
@@ -65,12 +65,23 @@ export default function PostPage({ params }: Props) {
 
   return (
     <div className="">
-      <div className="h-36 py-10 text-center">
+      <div className="py-10 text-center">
         <PageTitle>{post.title}</PageTitle>
+        <span className="text-2xl font-extrabold leading-9 tracking-tight text-midnight-100 opacity-70">
+          {post.company}
+        </span>
         <div className={clsx(lessImportantText(), "py-4")}>
-          <span>{post.date.toLocaleDateString("en-US", postDateTemplate)}</span>
+          <span>
+            {post.date_start.toLocaleDateString("en-US", postDateTemplate)}
+          </span>
           <span className="px-2">&rarr;</span>
-          <span>{post.date.toLocaleDateString("en-US", postDateTemplate)}</span>
+          {post.date_stop ? (
+            <span>
+              {post.date_stop.toLocaleDateString("en-US", postDateTemplate)}
+            </span>
+          ) : (
+            <span>Present</span>
+          )}
         </div>
       </div>
       <div className="flex w-full flex-row justify-center space-x-9 pr-32">
@@ -78,7 +89,9 @@ export default function PostPage({ params }: Props) {
           <div className="text-sm font-medium leading-5">
             {post.skills && (
               <div className="py-4 xl:py-8">
-                <h2 className="text-xs uppercase tracking-wide">Skills</h2>
+                <h2 className="text-xs uppercase tracking-wide text-midnight-50">
+                  Skills
+                </h2>
                 <div className="flex flex-wrap">
                   {post.skills.map((skill) => (
                     <Tag key={skill} text={skill} />
@@ -98,7 +111,7 @@ export default function PostPage({ params }: Props) {
               <div className="block justify-between space-y-8 py-4 ">
                 {offsetPosts[0] && (
                   <div>
-                    <h2 className="text-xs uppercase tracking-wide">
+                    <h2 className="text-xs uppercase tracking-wide text-midnight-50">
                       Previous Article
                     </h2>
                     <MyLink
@@ -109,7 +122,7 @@ export default function PostPage({ params }: Props) {
                 )}
                 {offsetPosts[1] && (
                   <div>
-                    <h2 className="text-xs uppercase tracking-wide">
+                    <h2 className="text-xs uppercase tracking-wide text-midnight-50">
                       Next Article
                     </h2>
                     <MyLink
@@ -131,16 +144,8 @@ export default function PostPage({ params }: Props) {
             </Link>
           </div>
         </div>
-        <div className="">
-          <PostLayout
-            date={post.date}
-            githubUrl={""}
-            next={offsetPosts[1]}
-            prev={offsetPosts[0]}
-            tags={post.skills}
-            title={post.title}
-          >
-            {/* <text /> */}
+        <div>
+          <PostLayout>
             <MDXRenderer markdown={markdown} />
           </PostLayout>
         </div>
