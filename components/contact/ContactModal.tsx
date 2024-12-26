@@ -1,5 +1,4 @@
 import { Modal, ModalBody, ModalContent } from "@nextui-org/react";
-import ReCAPTCHA from "react-google-recaptcha";
 
 interface CompletedModalProps {
   isOpen: boolean;
@@ -14,7 +13,11 @@ export default function ContactModal({
   body,
 }: CompletedModalProps) {
   return (
-    <Modal className="max-h-screen" isOpen={isOpen} onOpenChange={onOpenChange}>
+    <Modal
+      className="max-h-screen dark"
+      isOpen={isOpen}
+      onOpenChange={onOpenChange}
+    >
       <ModalContent className="h-5/6 overflow-y-auto">
         {(onClose) => <ModalBody className="pt-5">{body}</ModalBody>}
       </ModalContent>

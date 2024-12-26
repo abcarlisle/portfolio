@@ -8,6 +8,15 @@
   },
   "projects": [
     {
+      "date_start": "11/20/2024",
+      "slug": "Portfolio",
+      "summary": "Designed and hosted a portfolio website with Next.js and AWS S3. The site showcases my projects and skills, making it easy for others to learn about my work. Its a great way to connect with collaborators and employers.",
+      "title": "This Website",
+      "company": "",
+      "skills": [ "Next.js", "AWS S3", "Web Development" ],
+      "github": "https://github.com/abcarlisle/portfolio"
+    },
+    {
       "date_start": "6/1/2024",
       "date_stop": "9/1/2024",
       "slug": "ETF_Holding_Calculator",
@@ -30,30 +39,21 @@
       "date_start": "1/1/2020",
       "date_stop": "5/1/2020",
       "slug": "Injection_Molder_Control_System",
-      "summary": "Wrote embedded software to control an injection molder system, focusing on PID temperature regulation for stability. Added RF communication for wireless coordination and interfacing with hardware. This made the system more automated and reliable.",
+      "summary": "Wrote embedded software to control an injection molder system, focusing on PID temperature regulation for stability.",
       "title": "Injection Molder",
-      "company": "",
-      "skills": [ "C++", "PID Control Systems", "RF Communication", "I2C and SPI Protocols" ],
+      "company": "Colorado School of Mines",
+      "skills": [ "C++", "PID Control Systems", "I2C and SPI Protocols" ],
       "github": ""
     },
     {
       "date_start": "8/1/2021",
       "date_stop": "5/1/2022",
       "slug": "Lunar_Regolith_Transport_System",
-      "summary": "Developed control software for an autonomous lunar transport system. Focused on pathfinding algorithms and coordinating hardware components to handle harsh lunar conditions. This project emphasized precision and system optimization.",
+      "summary": "Developed control software for an autonomous lunar transport system. Focused on coordinating hardware and software components to handle harsh lunar conditions. This project emphasized precision and system optimization.",
       "title": "Lunar Regolith Transport System",
-      "company": "",
-      "skills": [ "C++", "Pathfinding Algorithms", "Embedded Systems Development", "Systems Integration" ],
+      "company": "Colorado School of Mines",
+      "skills": [ "C++", "Embedded Systems Development", "Systems Integration" ],
       "github": ""
-    },
-    {
-      "date_start": "11/20/2024",
-      "slug": "Portfolio",
-      "summary": "Designed and hosted a portfolio website with Next.js and AWS S3. The site showcases my projects and skills, making it easy for others to learn about my work. Its a great way to connect with collaborators and employers.",
-      "title": "This Website",
-      "company": "",
-      "skills": [ "Next.js", "AWS S3", "Web Development" ],
-      "github": "https://github.com/abcarlisle/portfolio"
     }
   ],
   "work": [
@@ -91,16 +91,6 @@
       "slug": "NG_Software_Engineering_Intern",
       "summary": "Built a monitoring app in C++ and Python that made deployments more reliable by catching build issues early. Worked with XML schemas to make configurations reusable and scalable. These improvements saved developer time and reduced errors during deployment.",
       "title": "Software Engineering Internship",
-      "company": "Northrop Grumman",
-      "skills": [ "C++", "Python", "XML Schemas", "Qt GUI Development", "Debugging" ],
-      "github": ""
-    },
-    {
-      "date_start": "5/1/2020",
-      "date_stop": "8/1/2021",
-      "slug": "pre-render",
-      "summary": "Built a monitoring app in C++ and Python that made deployments more reliable by catching build issues early. Worked with XML schemas to make configurations reusable and scalable. These improvements saved developer time and reduced errors during deployment.",
-      "title": "Pre Rendered",
       "company": "Northrop Grumman",
       "skills": [ "C++", "Python", "XML Schemas", "Qt GUI Development", "Debugging" ],
       "github": ""
