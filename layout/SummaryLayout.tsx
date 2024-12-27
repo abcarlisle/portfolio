@@ -21,9 +21,21 @@ export default function SummaryLayout({ posts, ref }: LayoutProps) {
               <div className="">
                 <div>
                   <Link className="" href={`/post/${slug}`}>
-                    <h2 className="text-xl font-extrabold tracking-tight text-midnight-50">
-                      {title}
-                    </h2>
+                    <div className="flex flex-row">
+                      <div className="flex-1">
+                        <h2 className="text-xl font-extrabold tracking-tight text-midnight-50">
+                          {title}
+                        </h2>
+                      </div>
+                      <div className="flex-1 justify-end">
+                        <h1 className="text-end text-midnight-50 opacity-70">
+                          {post.date_start.toLocaleDateString("en-US", {
+                            year: "numeric",
+                            month: "long",
+                          })}
+                        </h1>
+                      </div>
+                    </div>
                   </Link>
                   <div className="flex flex-wrap">
                     {post.skills.map((skill: string) => (

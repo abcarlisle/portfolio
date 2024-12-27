@@ -82,6 +82,12 @@ export default function Home() {
     }
   };
 
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   useEffect(() => {
     console.log("ERROR: ", errorMessage);
 
@@ -180,25 +186,32 @@ export default function Home() {
         <div ref={refs[0]} className="max-h-none">
           <AboutLayout about={posts.about} />
         </div>
-        <div ref={refs[1]} className="max-h-none">
+        <div ref={refs[1]} className="max-h-none w-full">
           <SummaryLayout posts={posts.work} />
         </div>
-        <div ref={refs[2]} className="max-h-none">
+        <div ref={refs[2]} className="max-h-none w-full">
           <SummaryLayout posts={posts.projects} />
         </div>
         {/* Bug with static pages and prose need to have prose declared in the non static page on something that wouldn't matter  */}
-        <div ref={refs[3]} className="flex w-full justify-center light">
-          <div
-            data-iframe-height="270"
-            data-iframe-width="150"
-            data-share-badge-host="https://www.credly.com"
-            data-share-badge-id="c3aca033-795d-4061-8462-a303a90ea349"
-          />
-          <script
-            async
-            src="//cdn.credly.com/assets/utilities/embed.js"
-            type="text/javascript"
-          />
+        <div
+          ref={refs[3]}
+          className="flex max-h-none w-full justify-center dark"
+        >
+          {isMounted && (
+            <div>
+              <div
+                data-iframe-height="270"
+                data-iframe-width="420"
+                data-share-badge-host="https://www.credly.com"
+                data-share-badge-id="c3aca033-795d-4061-8462-a303a90ea349"
+              />
+              <script
+                async
+                src="//cdn.credly.com/assets/utilities/embed.js"
+                type="text/javascript"
+              />
+            </div>
+          )}
         </div>
         <div className="prose prose-invert" />
       </section>
