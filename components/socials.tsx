@@ -5,7 +5,7 @@ import { siteConfig } from "@/config/site";
 
 export const Socials = () => {
   return (
-    <div className="flex items-center gap-4">
+    <div className="flex gap-6">
       <Link aria-label="Linkedin" href={siteConfig.links.linkedin}>
         <LinkedinIcon className="text-default-500" />
       </Link>

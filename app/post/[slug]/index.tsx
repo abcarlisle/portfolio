@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@nextui-org/react";
 import clsx from "clsx";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -31,6 +32,74 @@ const defaultPost = {
   skills: ["test"],
   slug: "test",
 };
+
+interface NavigationProps {
+  post: Post;
+  offsetPosts: (Post | undefined)[];
+}
+function Navigation({ post, offsetPosts }: NavigationProps) {
+  return (
+    <div className="w-full md:mr-12 md:w-1/6">
+      <div className="text-sm font-medium leading-5">
+        {post.skills && (
+          <div className="py-4 xl:py-8">
+            <h2 className="text-medium font-bold uppercase tracking-wide text-midnight-50 md:text-xs">
+              Skills
+            </h2>
+            <div className="flex flex-wrap">
+              {post.skills.map((skill) => (
+                <Tag key={skill} text={skill} />
+              ))}
+            </div>
+          </div>
+        )}
+        <div className="flex flex-row items-center space-x-4 py-3 text-sm">
+          {post.github && (
+            <>
+              <GithubIcon className="text-default-500" />
+              <MyLink href={post.github} title="View on Github" />
+            </>
+          )}
+        </div>
+        {(offsetPosts[1] || offsetPosts[0]) && (
+          <div className="hidden justify-between space-y-8 py-4 md:block ">
+            {offsetPosts[0] && (
+              <div>
+                <h2 className="text-xs uppercase tracking-wide text-midnight-50">
+                  Previous Article
+                </h2>
+                <MyLink
+                  href={`/post/${offsetPosts[0]?.slug}`}
+                  title={offsetPosts[0]?.title}
+                />
+              </div>
+            )}
+            {offsetPosts[1] && (
+              <div>
+                <h2 className="text-xs uppercase tracking-wide text-midnight-50">
+                  Next Article
+                </h2>
+                <MyLink
+                  href={`/post/${offsetPosts[1]?.slug}`}
+                  title={offsetPosts[1]?.title}
+                />
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+      <div className="hidden pt-4 md:block xl:pt-8">
+        <Link
+          aria-label="Back to Portfolio"
+          className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+          href={`/`}
+        >
+          &larr; Back to Portfolio
+        </Link>
+      </div>
+    </div>
+  );
+}
 
 export default function PostPage({ params }: Props) {
   const [markdown, setMarkdown] = useState("");
@@ -64,7 +133,7 @@ export default function PostPage({ params }: Props) {
   }, []);
 
   return (
-    <div className="">
+    <div className="px-5 pb-10 md:px-0">
       <div className="py-10 text-center">
         <PageTitle>{post.title}</PageTitle>
         <span className="text-2xl font-extrabold leading-9 tracking-tight text-midnight-100 opacity-70">
@@ -84,70 +153,37 @@ export default function PostPage({ params }: Props) {
           )}
         </div>
       </div>
-      <div className="flex w-full flex-row justify-center space-x-9 pr-32">
-        <div className="mr-12 w-1/6">
-          <div className="text-sm font-medium leading-5">
-            {post.skills && (
-              <div className="py-4 xl:py-8">
-                <h2 className="text-xs uppercase tracking-wide text-midnight-50">
-                  Skills
-                </h2>
-                <div className="flex flex-wrap">
-                  {post.skills.map((skill) => (
-                    <Tag key={skill} text={skill} />
-                  ))}
-                </div>
-              </div>
-            )}
-            <div className="flex flex-row items-center space-x-4 py-3 text-sm">
-              {post.github && (
-                <>
-                  <GithubIcon className="text-default-500" />
-                  <MyLink href={post.github} title="View on Github" />
-                </>
-              )}
-            </div>
-            {(offsetPosts[1] || offsetPosts[0]) && (
-              <div className="block justify-between space-y-8 py-4 ">
-                {offsetPosts[0] && (
-                  <div>
-                    <h2 className="text-xs uppercase tracking-wide text-midnight-50">
-                      Previous Article
-                    </h2>
-                    <MyLink
-                      href={`/post/${offsetPosts[0]?.slug}`}
-                      title={offsetPosts[0]?.title}
-                    />
-                  </div>
-                )}
-                {offsetPosts[1] && (
-                  <div>
-                    <h2 className="text-xs uppercase tracking-wide text-midnight-50">
-                      Next Article
-                    </h2>
-                    <MyLink
-                      href={`/post/${offsetPosts[1]?.slug}`}
-                      title={offsetPosts[1]?.title}
-                    />
-                  </div>
-                )}
-              </div>
-            )}
-          </div>
-          <div className="pt-4 xl:pt-8">
-            <Link
-              aria-label="Back to Portfolio"
-              className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-              href={`/`}
-            >
-              &larr; Back to Portfolio
-            </Link>
-          </div>
-        </div>
-        <div>
+      <div className="flex w-full flex-col justify-center space-x-9 md:flex-row md:pr-32">
+        <Navigation offsetPosts={offsetPosts} post={post} />
+        <div className="pr-5 md:pr-0">
           <PostLayout>
             <MDXRenderer markdown={markdown} />
           </PostLayout>
+        </div>
+        <div className="block md:hidden">
+          <div className="flex justify-evenly pt-8">
+            <Button
+              as={Link}
+              color="primary"
+              href={`/post/${offsetPosts[0]?.slug}`}
+              variant="solid"
+            >
+              &larr;
+            </Button>
+
+            <Button as={Link} color="primary" href={`/`} variant="solid">
+              Home
+            </Button>
+
+            <Button
+              as={Link}
+              color="primary"
+              href={`/post/${offsetPosts[1]?.slug}`}
+              variant="solid"
+            >
+              &rarr;
+            </Button>
+          </div>
         </div>
       </div>
     </div>

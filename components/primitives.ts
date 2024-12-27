@@ -56,7 +56,7 @@ export const lessImportantText = tv({
   base: "text-large text-midnight-50 text-opacity-50",
   variants: {
     hovered: {
-      true: "hover:text-2xl hover:text-default-900 hover:text-opacity-100",
+      true: "hover:text-2xl hover:text-opacity-100",
     },
     selected: { true: "text-2xl text-midnight-50 text-opacity-100" },
   },
