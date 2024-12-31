@@ -56,6 +56,17 @@
       "github": ""
     }
   ],
+  "open_source": [
+    {
+      "date_start": "6/1/2024",
+      "slug": "pytorch",
+      "summary": "Contributed to the PyTorch project, working on bug fixes to improve the library's stability. Fixed bugs to improve the library's performance and functionality.",
+      "title": "PyTorch",
+      "company": "",
+      "skills": [ "Python", "PyTorch", "CPython", "GDB"],
+      "github": "https://github.com/abcarlisle/pytorch"
+    }
+  ],
   "work": [
     {
       "date_start": "6/1/2024",

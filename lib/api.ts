@@ -12,7 +12,6 @@ export interface Post {
 }
 
 function formatPost(jsonPost: any): Post {
-  // console.log("PRE", jsonPost);
   let post: Post;
 
   if (jsonPost.date_stop) {
@@ -39,18 +38,24 @@ function formatPost(jsonPost: any): Post {
     };
   }
 
-  // console.log("POST", post);
-
   return post;
 }
-export function getAllPosts(): { projects: Post[]; work: Post[]; about: Post } {
+export function getAllPosts(): {
+  projects: Post[];
+  work: Post[];
+  about: Post;
+  open_source: Post[];
+  } {
   const projects = postsData["projects"];
   const work = postsData["work"];
   const about = postsData["about"];
+  const open_source = postsData["open_source"];
 
   const formatedProjects = projects.map((post) => formatPost(post));
 
   const formatedWork = work.map((post) => formatPost(post));
+
+  const formatedOpenSource = open_source.map((post) => formatPost(post));
 
   const formatedAbout = formatPost(about);
 
@@ -58,6 +63,7 @@ export function getAllPosts(): { projects: Post[]; work: Post[]; about: Post } {
     projects: formatedProjects,
     work: formatedWork,
     about: formatedAbout,
+    open_source: formatedOpenSource,
   };
 }
 
@@ -66,6 +72,9 @@ export async function getPostBySlug(slug: string): Promise<Post> {
 
   if (!post) {
     post = postsData["work"].find((p) => p.slug === slug);
+  }
+  if (!post) {
+    post = postsData["open_source"].find((p) => p.slug === slug);
   }
 
   if (post) {
@@ -79,7 +88,9 @@ export async function getPostOffset(
   slug: string,
   offset: number,
 ): Promise<Post> {
-  const data = postsData["work"].concat(postsData["projects"]);
+  const data = postsData["work"]
+    .concat(postsData["open_source"])
+    .concat(postsData["projects"]);
 
   let index = data.findIndex((p) => p.slug === slug);
 

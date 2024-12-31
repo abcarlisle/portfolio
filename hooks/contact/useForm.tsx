@@ -18,7 +18,6 @@ const useForm = (initialValues: ContactFormValues) => {
       ...values,
       [event.target.name]: event.target.value,
     });
-    console.log(values);
   };
 
   const reset = () => {

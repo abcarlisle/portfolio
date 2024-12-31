@@ -7,7 +7,6 @@ export async function ContactUsRequest({
   email,
   message,
 }: ContactFormValues) {
-  console.log("Sending request", firstName, lastName, email, message);
   const request = new Request(key.contactEndpoint, {
     method: "POST",
     headers: {
@@ -21,8 +20,6 @@ export async function ContactUsRequest({
       message: message,
     }),
   });
-
-  console.log(request);
 
   let response = await fetch(request);
 

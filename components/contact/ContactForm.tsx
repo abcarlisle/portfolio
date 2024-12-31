@@ -120,7 +120,7 @@ export default function ContactForm({
         <ReCAPTCHA
           ref={recaptchaRef}
           className="self-center"
-          sitekey={"6LcT85sqAAAAAP2QFGnBOLoL2HupB2Cdr3nDbkSY"}
+          sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""}
           type="image"
         />
       </div>

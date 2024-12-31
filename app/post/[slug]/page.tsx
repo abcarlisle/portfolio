@@ -4,7 +4,11 @@ import { getAllPosts, Post } from "@/lib/api";
 
 export async function generateStaticParams() {
   const posts = getAllPosts();
-  const pages: Post[] = [...posts.projects, ...posts.work];
+  const pages: Post[] = [
+    ...posts.work,
+    ...posts.open_source,
+    ...posts.projects,
+  ];
 
   const slugs = await Promise.all(
     pages.map(async (post) => ({

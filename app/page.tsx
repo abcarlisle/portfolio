@@ -17,12 +17,34 @@ import { lessImportantText, subtitle, title } from "@/components/primitives";
 import { Socials } from "@/components/socials";
 import AboutLayout from "@/layout/AboutLayout";
 import SummaryLayout from "@/layout/SummaryLayout";
-//https://cal.com/andrew-carlisle-wsvppu
+
+interface TOCProps {
+  visible: number;
+  index: number;
+  callback: (index: number) => void;
+  title: string;
+}
+const TOCListItem = ({ visible, index, callback, title }: TOCProps) => {
+  return (
+    <li
+      className={clsx(
+        "list-item",
+        lessImportantText({
+          hovered: true,
+          selected: visible === index,
+        }),
+      )}
+    >
+      <button onClick={() => callback(index)}>{title}</button>
+    </li>
+  );
+};
 
 export default function Home() {
   const posts = getAllPosts();
 
   const refs: RefObject<HTMLDivElement>[] = [
+    useRef<HTMLDivElement>(null),
     useRef<HTMLDivElement>(null),
     useRef<HTMLDivElement>(null),
     useRef<HTMLDivElement>(null),
@@ -89,8 +111,6 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    console.log("ERROR: ", errorMessage);
-
     if (isSuccess) {
       reset();
     }
@@ -107,52 +127,36 @@ export default function Home() {
         <div className="hidden px-5 md:flex">
           <div className="block w-80 text-start">
             <ul className="space-y-2 ">
-              <li
-                className={clsx(
-                  "list-item",
-                  lessImportantText({
-                    hovered: true,
-                    selected: visibleSection === 0,
-                  }),
-                )}
-              >
-                <button onClick={() => handleClicked(0)}>About</button>
-              </li>
-              <li
-                className={clsx(
-                  "list-item",
-                  lessImportantText({
-                    hovered: true,
-                    selected: visibleSection === 1,
-                  }),
-                )}
-              >
-                <button onClick={() => handleClicked(1)}>
-                  Work Experience
-                </button>
-              </li>
-              <li
-                className={clsx(
-                  "list-item",
-                  lessImportantText({
-                    hovered: true,
-                    selected: visibleSection === 2,
-                  }),
-                )}
-              >
-                <button onClick={() => handleClicked(2)}>Projects</button>
-              </li>
-              <li
-                className={clsx(
-                  "list-item",
-                  lessImportantText({
-                    hovered: true,
-                    selected: visibleSection === 3,
-                  }),
-                )}
-              >
-                <button onClick={() => handleClicked(3)}>Certfications</button>
-              </li>
+              <TOCListItem
+                callback={handleClicked}
+                index={0}
+                title="About"
+                visible={visibleSection}
+              />
+              <TOCListItem
+                callback={handleClicked}
+                index={1}
+                title="Work Experience"
+                visible={visibleSection}
+              />
+              <TOCListItem
+                callback={handleClicked}
+                index={2}
+                title="Open Source"
+                visible={visibleSection}
+              />
+              <TOCListItem
+                callback={handleClicked}
+                index={3}
+                title="Projects"
+                visible={visibleSection}
+              />
+              <TOCListItem
+                callback={handleClicked}
+                index={4}
+                title="Certifications"
+                visible={visibleSection}
+              />
             </ul>
           </div>
         </div>
@@ -190,11 +194,14 @@ export default function Home() {
           <SummaryLayout posts={posts.work} />
         </div>
         <div ref={refs[2]} className="max-h-none w-full">
+          <SummaryLayout posts={posts.open_source} />
+        </div>
+        <div ref={refs[3]} className="max-h-none w-full">
           <SummaryLayout posts={posts.projects} />
         </div>
         {/* Bug with static pages and prose need to have prose declared in the non static page on something that wouldn't matter  */}
         <div
-          ref={refs[3]}
+          ref={refs[4]}
           className="flex max-h-none w-full justify-center dark"
         >
           {isMounted && (
