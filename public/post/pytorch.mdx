@@ -1,0 +1,35 @@
+## Overview
+Working on PyTorch has been a rewarding experience, even if my contributions are just bug fixes. It’s been a great way to dive into a complex codebase and learn how such a powerful framework operates under the hood. Debugging issues with PyTorch taught me a lot about the framework, especially how it interfaces with **CPython**, and it gave me a chance to refine my debugging skills.
+
+## Challenges and Solutions
+
+### Challenge: Navigating PyTorch's massive codebase  
+PyTorch is a huge system, and figuring out where issues originated wasn’t always straightforward. The tightly coupled nature of the framework made it tricky to work through dependencies and figure out how changes might ripple through the code.  
+
+**Solution:** I used **GDB (GNU Debugger)** to track down runtime issues and wrote scripts to make debugging more efficient. I spent a lot of time learning **CPython internals**, which helped me understand how PyTorch integrates with Python and made sure my fixes followed the right conventions.
+
+### Challenge: Writing robust unit tests for bug fixes  
+Fixing a bug is one thing, but ensuring it doesn’t resurface is another challenge entirely. Designing tests that covered all edge cases while remaining efficient was an important part of the process.  
+
+**Solution:** I wrote comprehensive **unit tests** for every bug I fixed, ensuring that future changes wouldn’t accidentally reintroduce the same issues. These tests also contributed to PyTorch's overall stability and reliability.
+
+---
+
+## Contributions
+- Fixed bugs related to tensor operations and their interaction with **CPython** APIs.
+- Improved framework stability by identifying and resolving edge-case issues in core functionalities.
+- Wrote **unit tests** to validate bug fixes and prevent regressions.
+
+---
+
+## Skills Used
+- **Debugging Tools**: GDB
+- **Python Internals**: CPython
+- **Unit Testing**: Designing and implementing tests for bug prevention
+- **Open Source Collaboration**: Issue tracking, peer review, and community support
+
+---
+
+## Reflection
+Contributing bug fixes to PyTorch gave me a deeper appreciation for the complexity of high-performance frameworks. Writing unit tests to lock in fixes and collaborating with the community has been incredibly rewarding. It’s satisfying to know that even small contributions help improve a tool that so many rely on. Debugging PyTorch showed me how much I enjoy solving problems in complex systems while ensuring long-term stability.
+
