@@ -191,19 +191,40 @@ export default function Home() {
           <AboutLayout about={posts.about} />
         </div>
         <div ref={refs[1]} className="max-h-none w-full">
+          <div className="text-center md:hidden">
+            <span className="text-3xl font-extrabold tracking-tight text-midnight-50">
+              Work Experience
+            </span>
+          </div>
           <SummaryLayout posts={posts.work} />
         </div>
         <div ref={refs[2]} className="max-h-none w-full">
+          <div className="text-center md:hidden">
+            <span className="text-3xl font-extrabold tracking-tight text-midnight-50">
+              Open Source
+            </span>
+          </div>
           <SummaryLayout posts={posts.open_source} />
         </div>
         <div ref={refs[3]} className="max-h-none w-full">
+          <div className="text-center md:hidden">
+            <span className="text-3xl font-extrabold tracking-tight text-midnight-50">
+              Projects
+            </span>
+          </div>
           <SummaryLayout posts={posts.projects} />
         </div>
         {/* Bug with static pages and prose need to have prose declared in the non static page on something that wouldn't matter  */}
         <div
           ref={refs[4]}
-          className="flex max-h-none w-full justify-center dark"
+          className="flex max-h-none w-full flex-col items-center justify-center dark"
         >
+          <div className="text-center md:hidden">
+            <span className="text-3xl font-extrabold tracking-tight text-midnight-50">
+              Certifications
+            </span>
+          </div>
+
           {isMounted && (
             <div>
               <div
